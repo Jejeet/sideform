@@ -33,5 +33,71 @@
       
       <div id="error-message" style="display:none; color:red;"></div>
       <div id="success-message" style="display:none; color:green;"></div>
+      <script>
+        function submitForm() {
+  var name = document.getElementById("name");
+  var email = document.getElementById("email");
+  var phone = document.getElementById("phone");
+  var gender = document.getElementById("gender");
+  var password = document.getElementById("password");
+  var error = false;
+
+  if (name.value.trim() == "") {
+    name.style.border = "2px solid red";
+    error = true;
+  } else {
+    name.style.border = "";
+  }
+
+  if (email.value.trim() == "") {
+    email.style.border = "2px solid red";
+    error = true;
+  } else if (!isValidEmail(email.value.trim())) {
+    document.getElementById("error-message").innerHTML = "Please enter a valid email address";
+    document.getElementById("error-message").style.display = "block";
+    email.style.border = "2px solid red";
+    error = true;
+  } else {
+    email.style.border = "";
+    document.getElementById("error-message").style.display = "none";
+  }
+
+  if (phone.value.trim() == "") {
+    phone.style.border = "2px solid red";
+    error = true;
+  } else {
+    phone.style.border = "";
+  }
+
+  if (gender.value.trim() == "") {
+    gender.style.border = "2px solid red";
+    error = true;
+  } else {
+    gender.style.border = "";
+  }
+
+  if (password.value.trim() == "") {
+    password.style.border = "2px solid red";
+    error = true;
+  } else {
+    password.style.border = "";
+  }
+
+  if (!error) {
+    document.getElementById("myForm").reset();
+    document.getElementById("success-message").innerHTML = "Form submitted successfully!";
+    document.getElementById("success-message").style.display = "block";
+    setTimeout(function() {
+      document.getElementById("success-message").style.display = "none";
+    }, 3000);
+  }
+}
+
+function isValidEmail(email) {
+  var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  return pattern.test(email);
+}
+
+      </script>
 </body>
 </html>
